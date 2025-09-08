@@ -2,6 +2,7 @@ package org.foedusprogramme.hueflow.colorapplier
 
 import android.app.Activity
 import android.util.Log
+import org.foedusprogramme.hueflow.core.HueFlow
 import java.util.concurrent.ConcurrentHashMap
 
 object ColorRegistry {
@@ -23,6 +24,7 @@ object ColorRegistry {
                 list.add(newApplier)
                 Log.d(TAG, "Added ColorApplier for ${newApplier.viewId}: ${newApplier.attribute}")
             }
+            HueFlow.updatePaletteUponRegistration(newApplier)
         }
     }
 

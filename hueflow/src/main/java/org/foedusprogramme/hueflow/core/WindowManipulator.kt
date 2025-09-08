@@ -26,7 +26,6 @@ class WindowManipulator {
                 // We register a color applier for window when an activity
                 // is created. Then we should immediately update the theme.
                 ColorRegistry.register(activity, WindowColorApplier(window))
-                HueFlow.currentPalette?.let { HueFlow.changePaletteImmediately(it) }
 
                 Log.d(TAG, "Activity registered, taskId: ${activity.taskId}")
             }

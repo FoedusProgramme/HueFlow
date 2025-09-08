@@ -3,6 +3,7 @@ package org.foedusprogramme.hueflow.core
 import android.animation.ValueAnimator
 import android.app.Application
 import android.graphics.Color
+import org.foedusprogramme.hueflow.colorapplier.ColorApplier
 import org.foedusprogramme.hueflow.colorapplier.ColorRegistry
 import org.foedusprogramme.hueflow.palette.ColorPalette
 import org.foedusprogramme.hueflow.palette.ColorToken
@@ -17,7 +18,11 @@ object HueFlow {
     init {
         // TODO: Test
         currentPalette = buildPalette("blue") {
-            ColorToken.Surface with Color.BLUE
+            ColorToken.Surface with 0xFFF9F9FF.toInt()
+            ColorToken.Primary with 0xFF415F91.toInt()
+            ColorToken.OnPrimary with 0xFFFFFFFF.toInt()
+            ColorToken.PrimaryContainer with 0xFFD6E3FF.toInt()
+            ColorToken.OnPrimaryContainer with 0xFF284777.toInt()
         }
     }
 
@@ -43,10 +48,8 @@ object HueFlow {
         }
     }
 
-    fun changePaletteImmediately(targetPalette: ColorPalette) {
-        ColorRegistry.getAllAppliers().forEach { it ->
-            it.applyColor(targetPalette.get(it.token))
-        }
+    fun updatePaletteUponRegistration(applier: ColorApplier) {
+        currentPalette?.let { applier.applyColor(it.get(applier.token)) }
     }
 
 }
