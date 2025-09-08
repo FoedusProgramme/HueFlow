@@ -22,8 +22,12 @@ enum class ColorToken {
     OutlineVariant,
     Primary,
     PrimaryContainer,
+    PrimaryFixed,
+    PrimaryFixedDim,
     Scrim,
     Secondary,
+    SecondaryFixed,
+    SecondaryFixedDim,
     SecondaryContainer,
     Surface,
     SurfaceBright,
@@ -35,7 +39,9 @@ enum class ColorToken {
     SurfaceDim,
     SurfaceVariant,
     Tertiary,
-    TertiaryContainer;
+    TertiaryContainer,
+    TertiaryFixed,
+    TertiaryFixedDim;
 
     companion object {
         val attrToTokenMapping = mapOf(
@@ -43,6 +49,12 @@ enum class ColorToken {
             R.attr.colorErrorContainer to ErrorContainer,
             R.attr.colorOnSurfaceInverse to InverseOnSurface,
             R.attr.colorPrimaryInverse to InversePrimary,
+            R.attr.colorPrimaryFixed to PrimaryFixed,
+            R.attr.colorSecondaryFixed to SecondaryFixed,
+            R.attr.colorTertiaryFixed to TertiaryFixed,
+            R.attr.colorPrimaryFixedDim to PrimaryFixedDim,
+            R.attr.colorSecondaryFixedDim to SecondaryFixedDim,
+            R.attr.colorTertiaryFixedDim to TertiaryFixedDim,
             R.attr.colorOnBackground to OnBackground,
             R.attr.colorOnError to OnError,
             R.attr.colorOnErrorContainer to OnErrorContainer,

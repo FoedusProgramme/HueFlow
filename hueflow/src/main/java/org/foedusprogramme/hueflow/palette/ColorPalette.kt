@@ -22,9 +22,13 @@ class ColorPalette(
     @param:ColorInt var outlineVariant: Int,
     @param:ColorInt var primary: Int,
     @param:ColorInt var primaryContainer: Int,
+    @param:ColorInt var primaryFixed: Int,
+    @param:ColorInt var primaryFixedDim: Int,
     @param:ColorInt var scrim: Int,
     @param:ColorInt var secondary: Int,
     @param:ColorInt var secondaryContainer: Int,
+    @param:ColorInt var secondaryFixed: Int,
+    @param:ColorInt var secondaryFixedDim: Int,
     @param:ColorInt var surface: Int,
     @param:ColorInt var surfaceBright: Int,
     @param:ColorInt var surfaceContainer: Int,
@@ -35,7 +39,9 @@ class ColorPalette(
     @param:ColorInt var surfaceDim: Int,
     @param:ColorInt var surfaceVariant: Int,
     @param:ColorInt var tertiary: Int,
-    @param:ColorInt var tertiaryContainer: Int
+    @param:ColorInt var tertiaryContainer: Int,
+    @param:ColorInt var tertiaryFixed: Int,
+    @param:ColorInt var tertiaryFixedDim: Int
 ) {
 
     private val tokenMap: Map<ColorToken, Int> by lazy {
@@ -59,9 +65,13 @@ class ColorPalette(
             ColorToken.OutlineVariant to outlineVariant,
             ColorToken.Primary to primary,
             ColorToken.PrimaryContainer to primaryContainer,
+            ColorToken.PrimaryFixed to primaryFixed,
+            ColorToken.PrimaryFixedDim to primaryFixedDim,
             ColorToken.Scrim to scrim,
             ColorToken.Secondary to secondary,
             ColorToken.SecondaryContainer to secondaryContainer,
+            ColorToken.SecondaryFixed to secondaryFixed,
+            ColorToken.SecondaryFixedDim to secondaryFixedDim,
             ColorToken.Surface to surface,
             ColorToken.SurfaceBright to surfaceBright,
             ColorToken.SurfaceContainer to surfaceContainer,
@@ -73,6 +83,8 @@ class ColorPalette(
             ColorToken.SurfaceVariant to surfaceVariant,
             ColorToken.Tertiary to tertiary,
             ColorToken.TertiaryContainer to tertiaryContainer,
+            ColorToken.TertiaryFixed to tertiaryFixed,
+            ColorToken.TertiaryFixedDim to tertiaryFixedDim
         )
     }
 

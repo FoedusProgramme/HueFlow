@@ -33,7 +33,7 @@ class EditorFragment : Fragment() {
                 HueFlow.changePalette(hueFlowColorPalette(
                     it.toString().toColorInt(),
                     false,
-                    PaletteStyle.Monochrome
+                    PaletteStyle.TonalSpot
                 ))
             }
         }

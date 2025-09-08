@@ -1,5 +1,5 @@
 [versions]
-agp = "9.0.0-alpha02"
+agp = "8.13.0"
 daggerCompilerVersion = "2.57.1"
 error_prone_annotations = "2.41.0"
 fragmentKtx = "1.8.9"

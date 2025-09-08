@@ -104,7 +104,6 @@ class TextInputLayoutColorAppliersFactory : ViewColorAppliersFactory<TextInputLa
             }
             attrToToken["cursorColor"]?.let { token ->
                 attr("cursorColor", token) {color ->
-                    Log.d("TAG", "cursorColor")
                     view.doOnNextLayout {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             view.cursorColor = ColorStateList.valueOf(color)

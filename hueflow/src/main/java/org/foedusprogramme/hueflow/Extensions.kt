@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.LayoutInflaterCompat
 import org.foedusprogramme.hueflow.colorapplier.factory.ViewColorAppliersFactory
 import org.foedusprogramme.hueflow.core.HueFlowLayoutInflaterFactory
+import org.foedusprogramme.hueflow.palette.ColorPalette
 import kotlin.math.roundToInt
 
 @ColorInt
@@ -37,3 +38,7 @@ fun AppCompatActivity.hueFlowHijack(customFactoryList: List<ViewColorAppliersFac
         layoutInflater,
         HueFlowLayoutInflaterFactory(this, customFactoryList)
     )
+
+fun ColorPalette.equalsByValue(colorPalette: ColorPalette): Boolean {
+    return primary == colorPalette.primary && secondary == colorPalette.secondary && tertiary == colorPalette.tertiary
+}

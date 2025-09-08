@@ -49,9 +49,13 @@ fun hueFlowColorPalette(
         outlineVariant = scheme.outlineVariant,
         primary = scheme.primary,
         primaryContainer = scheme.primaryContainer,
+        primaryFixed = scheme.primaryFixed,
+        primaryFixedDim = scheme.primaryFixedDim,
         scrim = scheme.scrim,
         secondary = scheme.secondary,
         secondaryContainer = scheme.secondaryContainer,
+        secondaryFixed = scheme.secondaryFixed,
+        secondaryFixedDim = scheme.secondaryFixedDim,
         surface = scheme.surface,
         surfaceBright = scheme.surfaceBright,
         surfaceContainer = scheme.surfaceContainer,
@@ -62,6 +66,8 @@ fun hueFlowColorPalette(
         surfaceDim = scheme.surfaceDim,
         surfaceVariant = scheme.surfaceVariant,
         tertiary = scheme.tertiary,
-        tertiaryContainer = scheme.tertiaryContainer
+        tertiaryContainer = scheme.tertiaryContainer,
+        tertiaryFixed = scheme.tertiaryFixed,
+        tertiaryFixedDim = scheme.tertiaryFixedDim
     )
 }
