@@ -2,6 +2,7 @@
 agp = "9.0.0-alpha02"
 daggerCompilerVersion = "2.57.1"
 error_prone_annotations = "2.41.0"
+fragmentKtx = "1.8.9"
 kotlin = "2.0.21"
 coreKtx = "1.10.1"
 junit = "4.13.2"
@@ -16,6 +17,7 @@ ksp = "2.2.0-2.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 error_prone_annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "error_prone_annotations" }
 google-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompilerVersion" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "daggerCompilerVersion" }
