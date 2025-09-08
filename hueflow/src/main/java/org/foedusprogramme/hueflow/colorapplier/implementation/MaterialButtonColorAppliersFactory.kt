@@ -4,6 +4,7 @@ import com.google.android.material.button.MaterialButton
 import org.foedusprogramme.hueflow.NAMESPACE_ANDROID
 import org.foedusprogramme.hueflow.NAMESPACE_APP
 import org.foedusprogramme.hueflow.colorapplier.ColorApplier
+import org.foedusprogramme.hueflow.colorapplier.factory.ViewColorApplierBuilder
 import org.foedusprogramme.hueflow.colorapplier.factory.ViewColorAppliersFactory
 import org.foedusprogramme.hueflow.palette.ColorToken
 
@@ -18,27 +19,19 @@ class MaterialButtonColorAppliersFactory : ViewColorAppliersFactory<MaterialButt
     }
 
     override fun build(view: MaterialButton, attrToToken: Map<String, ColorToken>): List<ColorApplier> {
-        val list = mutableListOf<ColorApplier>()
-
-        attrToToken["textColor"]?.let { token ->
-            list.add(object : ColorApplier {
-                override val viewId = view.id
-                override val attribute: String = "textColor"
-                override val token: ColorToken = token
-                override fun applyColor(color: Int) { view.setTextColor(color) }
-            })
-        }
-
-        attrToToken["backgroundTint"]?.let { token ->
-            list.add(object : ColorApplier {
-                override val viewId = view.id
-                override val attribute: String = "backgroundTint"
-                override val token: ColorToken = token
-                override fun applyColor(color: Int) { view.setBackgroundColor(color) }
-            })
-        }
-
-        return list
+        return ViewColorApplierBuilder(view).apply {
+            attrToToken["textColor"]?.let { token ->
+                attr(attribute = "textColor",
+                    token = token) {
+                    color -> setTextColor(color)
+                }
+            }
+            attrToToken["backgroundTint"]?.let { token ->
+                attr(attribute = "backgroundTint",
+                    token = token) {
+                    color -> setBackgroundColor(color)
+                }
+            }
+        }.build()
     }
-
 }
