@@ -3,6 +3,7 @@ package org.foedusprogramme.hueflow
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.LayoutInflaterCompat
+import org.foedusprogramme.hueflow.colorapplier.factory.ViewColorAppliersFactory
 import org.foedusprogramme.hueflow.core.HueFlowLayoutInflaterFactory
 import kotlin.math.roundToInt
 
@@ -31,6 +32,8 @@ fun @receiver:ColorInt Int.lerp(
     return (a shl 24) or (r shl 16) or (g shl 8) or b
 }
 
-fun AppCompatActivity.hueFlowHijack() {
-    LayoutInflaterCompat.setFactory2( layoutInflater, HueFlowLayoutInflaterFactory(this))
-}
+fun AppCompatActivity.hueFlowHijack(customFactoryList: List<ViewColorAppliersFactory<*>> = listOf()) =
+    LayoutInflaterCompat.setFactory2(
+        layoutInflater,
+        HueFlowLayoutInflaterFactory(this, customFactoryList)
+    )
