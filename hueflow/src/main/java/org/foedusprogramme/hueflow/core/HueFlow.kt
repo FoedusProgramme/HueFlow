@@ -3,6 +3,7 @@ package org.foedusprogramme.hueflow.core
 import android.animation.ValueAnimator
 import android.app.Application
 import android.graphics.Color
+import androidx.core.animation.doOnEnd
 import org.foedusprogramme.hueflow.colorapplier.ColorApplier
 import org.foedusprogramme.hueflow.colorapplier.ColorRegistry
 import org.foedusprogramme.hueflow.palette.ColorPalette
@@ -15,15 +16,24 @@ object HueFlow {
     private val windowManipulator = WindowManipulator()
     var currentPalette: ColorPalette? = null
 
+    val bluePalette = buildPalette("blue") {
+        ColorToken.Surface with 0xFFF9F9FF.toInt()
+        ColorToken.Primary with 0xFF415F91.toInt()
+        ColorToken.OnPrimary with 0xFFFFFFFF.toInt()
+        ColorToken.PrimaryContainer with 0xFFD6E3FF.toInt()
+        ColorToken.OnPrimaryContainer with 0xFF284777.toInt()
+    }
+
+    val redPalette = buildPalette("red") {
+        ColorToken.Surface with 0xFFFFF8F7.toInt()
+        ColorToken.Primary with 0xFF904A45.toInt()
+        ColorToken.OnPrimary with 0xFFFFFFFF.toInt()
+        ColorToken.PrimaryContainer with 0xFFFFDAD6.toInt()
+        ColorToken.OnPrimaryContainer with 0xFF73332F.toInt()
+    }
+
     init {
-        // TODO: Test
-        currentPalette = buildPalette("blue") {
-            ColorToken.Surface with 0xFFF9F9FF.toInt()
-            ColorToken.Primary with 0xFF415F91.toInt()
-            ColorToken.OnPrimary with 0xFFFFFFFF.toInt()
-            ColorToken.PrimaryContainer with 0xFFD6E3FF.toInt()
-            ColorToken.OnPrimaryContainer with 0xFF284777.toInt()
-        }
+        currentPalette = redPalette
     }
 
     fun applyToApplication(application: Application) =
@@ -34,7 +44,7 @@ object HueFlow {
             0F,
             1F
         ).apply {
-            duration = 10_000
+            duration = 500
             addUpdateListener {
                 val value = it.animatedValue as Float
                 ColorRegistry.getAllAppliers().forEach { it ->
@@ -43,6 +53,9 @@ object HueFlow {
                             .lerp(targetPalette.get(it.token), value)
                     )
                 }
+            }
+            doOnEnd {
+                currentPalette = targetPalette
             }
             start()
         }
