@@ -1,42 +1,57 @@
 package org.foedusprogramme.hueflow.colorapplier
 
 import android.app.Activity
-import android.util.Log
 import org.foedusprogramme.hueflow.core.HueFlow
 import java.util.concurrent.ConcurrentHashMap
 
 object ColorRegistry {
-    private val registry = ConcurrentHashMap<Int, MutableList<ColorApplier>>()
+    private val activityRegistry = ConcurrentHashMap<Int, MutableList<ColorApplier>>()
+    private val viewRegistry = ConcurrentHashMap<Int, MutableList<ColorApplier>>()
 
     fun register(activity: Activity, applier: ColorApplier) {
         register(activity, listOf(applier))
     }
 
     fun register(activity: Activity, appliers: List<ColorApplier>) {
-        val list = registry.getOrPut(activity.taskId) { mutableListOf() }
+        val list = activityRegistry.getOrPut(activity.taskId) { mutableListOf() }
 
         for (newApplier in appliers) {
             val index = list.indexOfFirst { it.viewId == newApplier.viewId && it.attribute == newApplier.attribute }
             if (index >= 0) {
                 list[index] = newApplier
-                Log.d(TAG, "Updated ColorApplier for ${newApplier.viewId}: ${newApplier.attribute}")
             } else {
                 list.add(newApplier)
-                Log.d(TAG, "Added ColorApplier for ${newApplier.viewId}: ${newApplier.attribute}")
             }
+
+            val vList = viewRegistry.getOrPut(newApplier.viewId) { mutableListOf() }
+            val vIndex = vList.indexOfFirst { it.attribute == newApplier.attribute }
+            if (vIndex >= 0) {
+                vList[vIndex] = newApplier
+            } else {
+                vList.add(newApplier)
+            }
+
             HueFlow.updatePaletteUponRegistration(newApplier)
         }
     }
 
     fun unregister(activity: Activity) {
-        registry.remove(activity.taskId)
+        activityRegistry.remove(activity.taskId)
     }
 
+    fun getApplier(viewId: Int, attribute: String): ColorApplier =
+        viewRegistry[viewId]
+            ?.first { it.attribute == attribute }
+            ?: throw NoSuchElementException("No applier found for viewId=$viewId attribute=$attribute")
+
+    fun getAppliers(viewId: Int): List<ColorApplier> =
+        viewRegistry[viewId] ?: emptyList()
+
     fun getAppliers(activity: Activity): List<ColorApplier> =
-        registry[activity.taskId] ?: emptyList()
+        activityRegistry[activity.taskId] ?: emptyList()
 
     fun getAllAppliers(): List<ColorApplier> =
-        registry.values.flatten()
+        activityRegistry.values.flatten()
 
     const val TAG = "ColorRegistry"
 }
