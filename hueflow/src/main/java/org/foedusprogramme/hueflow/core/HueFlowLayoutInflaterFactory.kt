@@ -8,6 +8,7 @@ import android.view.View
 import org.foedusprogramme.hueflow.colorapplier.ColorRegistry
 import org.foedusprogramme.hueflow.colorapplier.factory.ViewColorAppliersFactory
 import org.foedusprogramme.hueflow.colorapplier.implementation.MaterialButtonColorAppliersFactory
+import org.foedusprogramme.hueflow.colorapplier.implementation.TextInputLayoutColorAppliersFactory
 import org.foedusprogramme.hueflow.palette.ColorToken
 import org.foedusprogramme.hueflow.palette.ColorToken.Companion.attrToTokenMapping
 
@@ -19,7 +20,8 @@ class HueFlowLayoutInflaterFactory(
     private val factories: List<ViewColorAppliersFactory<*>> =
         customFactoryList +
                 listOf(
-                    MaterialButtonColorAppliersFactory()
+                    MaterialButtonColorAppliersFactory(),
+                    TextInputLayoutColorAppliersFactory()
                 )
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {

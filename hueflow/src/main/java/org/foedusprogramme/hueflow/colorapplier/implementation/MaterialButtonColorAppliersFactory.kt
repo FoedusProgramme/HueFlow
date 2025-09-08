@@ -1,5 +1,6 @@
 package org.foedusprogramme.hueflow.colorapplier.implementation
 
+import android.content.res.ColorStateList
 import com.google.android.material.button.MaterialButton
 import org.foedusprogramme.hueflow.NAMESPACE_ANDROID
 import org.foedusprogramme.hueflow.NAMESPACE_APP
@@ -14,7 +15,8 @@ class MaterialButtonColorAppliersFactory : ViewColorAppliersFactory<MaterialButt
     override fun getMutableAttributes(view: MaterialButton): List<Pair<String, String>> {
         return listOf(
             "textColor" to NAMESPACE_ANDROID,
-            "backgroundTint" to NAMESPACE_APP
+            "backgroundTint" to NAMESPACE_APP,
+            "iconTint" to NAMESPACE_APP
         )
     }
 
@@ -30,6 +32,12 @@ class MaterialButtonColorAppliersFactory : ViewColorAppliersFactory<MaterialButt
                 attr(attribute = "backgroundTint",
                     token = token) {
                     color -> setBackgroundColor(color)
+                }
+            }
+            attrToToken["iconTint"]?.let { token ->
+                attr(attribute = "iconTint",
+                    token = token) {
+                        color -> iconTint = ColorStateList.valueOf(color)
                 }
             }
         }.build()

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HueFlowDemo</string>
+    <string name="custom_color_here">Custom color here</string>
 </resources>
