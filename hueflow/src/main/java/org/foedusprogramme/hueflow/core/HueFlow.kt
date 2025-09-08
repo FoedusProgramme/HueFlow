@@ -29,7 +29,7 @@ object HueFlow {
             0F,
             1F
         ).apply {
-            ValueAnimator.setDuration = 10_000
+            duration = 10_000
             addUpdateListener {
                 val value = it.animatedValue as Float
                 ColorRegistry.getAllAppliers().forEach { it ->
