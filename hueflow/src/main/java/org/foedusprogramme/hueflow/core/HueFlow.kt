@@ -6,6 +6,9 @@ import androidx.core.animation.doOnEnd
 import org.foedusprogramme.hueflow.ANIMATION_LENGTH
 import org.foedusprogramme.hueflow.colorapplier.ColorApplier
 import org.foedusprogramme.hueflow.colorapplier.ColorRegistry
+import org.foedusprogramme.hueflow.colorapplier.factory.ViewColorAppliersFactory
+import org.foedusprogramme.hueflow.colorapplier.implementation.MaterialButtonColorAppliersFactory
+import org.foedusprogramme.hueflow.colorapplier.implementation.TextInputLayoutColorAppliersFactory
 import org.foedusprogramme.hueflow.equalsByValue
 import org.foedusprogramme.hueflow.palette.ColorPalette
 import org.foedusprogramme.hueflow.lerp
@@ -13,6 +16,10 @@ import org.foedusprogramme.hueflow.lerp
 object HueFlow {
 
     private val windowManipulator = WindowManipulator()
+    var factories: List<ViewColorAppliersFactory<*>> = listOf(
+        MaterialButtonColorAppliersFactory(),
+        TextInputLayoutColorAppliersFactory()
+    )
     var currentPalette: ColorPalette = HueFlowPresets.greenColorPalette(false)
     var paletteAnimator: ValueAnimator? = null
     private val onPaletteUpdateListeners = mutableListOf<OnPaletteUpdateListener>()
