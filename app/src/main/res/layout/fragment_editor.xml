@@ -23,8 +23,6 @@
         android:layout_height="wrap_content"
         android:text="Red hue"
         android:layout_marginStart="24dp"
-        android:textColor="?colorOnPrimaryContainer"
-        app:backgroundTint="?colorPrimaryContainer"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintTop_toTopOf="parent"
